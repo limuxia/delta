@@ -1,0 +1,311 @@
+<?php
+	include("../config/dbconnect.php");
+	$word=$_POST['word'];
+	$j = 1; 
+	
+	$sql1 = "SELECT id,name,norm,description,photo FROM head WHERE id LIKE ('%$word%') OR name LIKE ('%$word%') OR norm LIKE ('%$word%') OR description LIKE ('%$word%')";
+	$req1 = mysql_query($sql1) or die("Erreur SQL !".$sql1."".mysql_error());
+	$sql2 = "SELECT id,name,norm,description,photo FROM respiratory WHERE id LIKE ('%$word%') OR name LIKE ('%$word%') OR norm LIKE ('%$word%') OR description LIKE ('%$word%')";
+	$req2 = mysql_query($sql2) or die("Erreur SQL !".$sql2."".mysql_error());
+	$sql3 = "SELECT id,name,norm,description,photo,size FROM glove WHERE id LIKE ('%$word%') OR name LIKE ('%$word%') OR norm LIKE ('%$word%') OR description LIKE ('%$word%')";
+	$req3 = mysql_query($sql3) or die("Erreur SQL !".$sql3."".mysql_error());
+	$sql4 = "SELECT id,name,norm,description,photo,size FROM shoes WHERE id LIKE ('%$word%') OR name LIKE ('%$word%') OR norm LIKE ('%$word%') OR description LIKE ('%$word%')";
+	$req4 = mysql_query($sql4) or die("Erreur SQL !".$sql4."".mysql_error());
+	$sql5 = "SELECT id,name,norm,description,photo,size FROM tec_clothes WHERE id LIKE ('%$word%') OR name LIKE ('%$word%') OR norm LIKE ('%$word%') OR description LIKE ('%$word%')";
+	$req5 = mysql_query($sql5) or die("Erreur SQL !".$sql5."".mysql_error());
+	$sql6 = "SELECT id,name,norm,description,photo,size FROM wk_clothes WHERE id LIKE ('%$word%') OR name LIKE ('%$word%') OR norm LIKE ('%$word%') OR description LIKE ('%$word%')";
+	$req6 = mysql_query($sql6) or die("Erreur SQL !".$sql6."".mysql_error());
+	$sql7 = "SELECT id,name,norm,description,photo FROM fall_arrest WHERE id LIKE ('%$word%') OR name LIKE ('%$word%') OR norm LIKE ('%$word%') OR description LIKE ('%$word%')";
+	$req7 = mysql_query($sql7) or die("Erreur SQL !".$sql7."".mysql_error());
+
+echo '<table cellspacing="10"><tr valign="top">';	
+if (mysql_num_rows($req1)>0 || mysql_num_rows($req2)>0 || mysql_num_rows($req3)>0 || mysql_num_rows($req4)>0 || mysql_num_rows($req5)>0 || mysql_num_rows($req6)>0 || mysql_num_rows($req7)>0)
+{
+	while ($data = mysql_fetch_array($req1)){ 
+	 echo '<td><table style="width:396px" cellspacing="10"><tr><td width="150" rowspan="4" align="center"><img src="../';
+	 echo $data['photo'].$data['name'];
+	 echo '.jpg" /></td><td class="bottomGray3"><h5>';
+	 echo $data['name'];
+	 echo '</h5></td></tr><tr><td>';
+	 echo $data['id'];
+	 echo '</td></tr><tr><td>';
+	 echo '<img src="../pictures/norm/ce.jpg" style="float:left;" />';
+         switch ($data['norm'])
+          {
+              case "pictures/norm/fall_arrest/":
+              case "pictures/norm/glove/":
+              case "pictures/norm/head/":
+              case "pictures/norm/respiratory/":
+              case "pictures/norm/shoes/":
+              case "pictures/norm/tec_clothes/":
+              case "pictures/norm/wk_clothes/":
+ 		echo '<img src="../';
+		echo $data['norm'].$data['name']."_ce";
+		echo '.jpg" style="float:left;" />';
+                break;
+              default:                
+                if($data['norm']!='pictures/norm/' && $data['norm']!='pictures/norm' && $data['norm']!='' && $data['norm']!='pictures/norm/gloves/' && $data['norm']!='pictures/norm/clothes/')
+         	 {
+	           echo '<img src="../';
+		   echo $data['norm'];
+		   echo '.jpg" style="float:left;" />';
+	          }
+           }
+	 echo '</td></tr><tr><td width="200px">';
+	 echo $data['description'];
+	 echo '</td></tr></table></td>';
+	 if ($j%2 == 0) 
+	 { 
+	   echo '</tr><tr valign="top">'; 
+	 } 
+	 $j++; 
+	}
+	while ($data = mysql_fetch_array($req2)){ 
+	 echo '<td><table style="width:396px" cellspacing="10"><tr><td width="150" rowspan="4" align="center"><img src="../';
+	 echo $data['photo'].$data['name'];
+	 echo '.jpg" /></td><td class="bottomGray3"><h5>';
+	 echo $data['name'];
+	 echo '</h5></td></tr><tr><td>';
+	 echo $data['id'];
+	 echo '</td></tr><tr><td>';
+	 echo '<img src="../pictures/norm/ce.jpg" style="float:left;" />';
+         switch ($data['norm'])
+          {
+              case "pictures/norm/fall_arrest/":
+              case "pictures/norm/glove/":
+              case "pictures/norm/head/":
+              case "pictures/norm/respiratory/":
+              case "pictures/norm/shoes/":
+              case "pictures/norm/tec_clothes/":
+              case "pictures/norm/wk_clothes/":
+ 		echo '<img src="../';
+		echo $data['norm'].$data['name']."_ce";
+		echo '.jpg" style="float:left;" />';
+                break;
+              default:                
+                if($data['norm']!='pictures/norm/' && $data['norm']!='pictures/norm' && $data['norm']!='' && $data['norm']!='pictures/norm/gloves/' && $data['norm']!='pictures/norm/clothes/')
+         	 {
+	           echo '<img src="../';
+		   echo $data['norm'];
+		   echo '.jpg" style="float:left;" />';
+	          }
+           }
+	 echo '</td></tr><tr><td width="200px">';
+	 echo $data['description'];
+	 echo '</td></tr></table></td>';
+	 if ($j%2 == 0) 
+	 { 
+	   echo '</tr><tr valign="top">'; 
+	 } 
+	 $j++; 
+	} 
+	while ($data = mysql_fetch_array($req3)){ 
+ 	 echo '<td><table style="width:396px" cellspacing="10"><tr><td style="width:150px" rowspan="5" align="center"><img src="../';
+	 echo $data['photo'].$data['name'];
+	 echo '.jpg" /></td><td class="bottomGray3"><h5>';
+	 echo $data['name'];
+	 echo '</h5></td></tr><tr><td>';
+	 echo $data['id'];
+	 echo '</td></tr><tr><td>';
+	 echo '<img src="../pictures/norm/ce.jpg" style="float:left;" />';
+         switch ($data['norm'])
+          {
+              case "pictures/norm/fall_arrest/":
+              case "pictures/norm/glove/":
+              case "pictures/norm/head/":
+              case "pictures/norm/respiratory/":
+              case "pictures/norm/shoes/":
+              case "pictures/norm/tec_clothes/":
+              case "pictures/norm/wk_clothes/":
+ 		echo '<img src="../';
+		echo $data['norm'].$data['name']."_ce";
+		echo '.jpg" style="float:left;" />';
+                break;
+              default:
+                if($data['norm']!='pictures/norm/' && $data['norm']!='pictures/norm' && $data['norm']!='' && $data['norm']!='pictures/norm/gloves/' && $data['norm']!='pictures/norm/clothes/')
+         	 {
+	           echo '<img src="../';
+		   echo $data['norm'];
+		   echo '.jpg" style="float:left;" />';
+	          }
+           }
+     
+	        echo '</td></tr><tr><td align="right">';
+	        echo $data['size'];
+	        echo '</td></tr><tr><td width="200">';
+	 echo $data['description'];
+	 echo '</td></tr></table></td>';
+	 if ($j%2 == 0) 
+	 { 
+	   echo '</tr><tr valign="top">'; 
+	 } 
+	 $j++; 
+	}
+	while ($data = mysql_fetch_array($req4)){ 
+	 echo '<td><table style="width:396px" cellspacing="10"><tr><td width="150" rowspan="5" align="center"><img src="../';
+	 echo $data['photo'].$data['name'];
+	 echo '.jpg" /></td><td class="bottomGray3"><h5>';
+	 echo $data['name'];
+	 echo '</h5></td></tr><tr><td>';
+	 echo $data['id'];
+	 echo '</td></tr><tr><td>';
+	 echo '<img src="../pictures/norm/ce.jpg" style="float:left;" />';
+         switch ($data['norm'])
+          {
+              case "pictures/norm/fall_arrest/":
+              case "pictures/norm/glove/":
+              case "pictures/norm/head/":
+              case "pictures/norm/respiratory/":
+              case "pictures/norm/shoes/":
+              case "pictures/norm/tec_clothes/":
+              case "pictures/norm/wk_clothes/":
+ 		echo '<img src="../';
+		echo $data['norm'].$data['name']."_ce";
+		echo '.jpg" style="float:left;" />';
+                break;
+              default:                
+                if($data['norm']!='pictures/norm/' && $data['norm']!='pictures/norm' && $data['norm']!='' && $data['norm']!='pictures/norm/gloves/' && $data['norm']!='pictures/norm/clothes/')
+         	 {
+	           echo '<img src="../';
+		   echo $data['norm'];
+		   echo '.jpg" style="float:left;" />';
+	          }
+           }
+	 echo '</td><td align="right">';
+	 echo $data['size'];
+	 echo '</td></tr><tr><td width="200px">';
+	 echo $data['description'];
+	 echo '</td></tr></table></td>';
+	 if ($j%2 == 0) 
+	 { 
+	   echo '</tr><tr valign="top">'; 
+	 } 
+	 $j++; 
+	}
+	while ($data = mysql_fetch_array($req5)){ 
+     echo '<td><table style="width:396px" cellspacing="10"><tr><td width="150" rowspan="4" align="center"><img src="../';
+	 echo $data['photo'].$data['name'];
+	 echo '.jpg" /></td><td class="bottomGray3"><h5>';
+	 echo $data['name'];
+ 	 echo '</h5></td></tr><tr><td>';
+ 	 echo $data['id'];
+	 echo '</td></tr><tr><td>';
+	 echo '<img src="../pictures/norm/ce.jpg" style="float:left;" />';
+         switch ($data['norm'])
+          {
+              case "pictures/norm/fall_arrest/":
+              case "pictures/norm/glove/":
+              case "pictures/norm/head/":
+              case "pictures/norm/respiratory/":
+              case "pictures/norm/shoes/":
+              case "pictures/norm/tec_clothes/":
+              case "pictures/norm/wk_clothes/":
+ 		echo '<img src="../';
+		echo $data['norm'].$data['name']."_ce";
+		echo '.jpg" style="float:left;" />';
+                break;
+              default:                
+                if($data['norm']!='pictures/norm/' && $data['norm']!='pictures/norm' && $data['norm']!='' && $data['norm']!='pictures/norm/gloves/' && $data['norm']!='pictures/norm/clothes/')
+         	 {
+	           echo '<img src="../';
+		   echo $data['norm'];
+		   echo '.jpg" style="float:left;" />';
+	          }
+           }
+	 echo '</td><td align="right">';
+	 echo $data['size'];
+	 echo '</td></tr><tr><td width="200px">';
+	 echo $data['description'];
+	 echo '</td></tr></table></td>';
+	 if ($j%2 == 0) 
+	 { 
+	   echo '</tr><tr valign="top">'; 
+	 } 
+	 $j++; 
+	} 
+	while ($data = mysql_fetch_array($req6)){ 
+	 echo '<td><table style="width:396px" cellspacing="10"><tr><td width="150" rowspan="5" align="center"><img src="../';
+	 echo $data['photo'].$data['name'];
+	 echo '.jpg" /></td><td class="bottomGray3"><h5>';
+	 echo $data['name'];
+	 echo '</h5></td></tr><tr><td>';
+	 echo $data['id'];
+	 echo '</td></tr><tr><td>';
+	 echo '<img src="../pictures/norm/ce.jpg" style="float:left;" />';
+         switch ($data['norm'])
+          {
+              case "pictures/norm/fall_arrest/":
+              case "pictures/norm/glove/":
+              case "pictures/norm/head/":
+              case "pictures/norm/respiratory/":
+              case "pictures/norm/shoes/":
+              case "pictures/norm/tec_clothes/":
+              case "pictures/norm/wk_clothes/":
+ 		echo '<img src="../';
+		echo $data['norm'].$data['name']."_ce";
+		echo '.jpg" style="float:left;" />';
+                break;
+              default:
+                if($data['norm']!='pictures/norm/' && $data['norm']!='pictures/norm' && $data['norm']!='' && $data['norm']!='pictures/norm/gloves/' && $data['norm']!='pictures/norm/clothes/')
+         	 {
+	           echo '<img src="../';
+		   echo $data['norm'];
+		   echo '.jpg" style="float:left;" />';
+	          }
+           }
+	 echo '</td></tr><tr><td align="right">';
+	 echo $data['size'];
+	 echo '</td></tr><tr><td width="200px">';
+	 echo $data['description'];
+	 echo '</td></tr></table></td>';
+	 if ($j%2 == 0) 
+	 { 
+	   echo '</tr><tr valign="top">'; 
+	 } 
+	 $j++; 
+	} 
+	while ($data = mysql_fetch_array($req7)){ 
+	 echo '<td><table style="width:396px" cellspacing="10"><tr><td width="150" rowspan="4" align="center"><img src="../';
+	 echo $data['photo'].$data['name'];
+	 echo '.jpg" /></td><td class="bottomGray3"><h5>';
+	 echo $data['name'];
+	 echo '</h5></td></tr><tr><td>';
+	 echo $data['id'];
+	 echo '</td></tr><tr><td>';
+	 echo '<img src="../pictures/norm/ce.jpg" style="float:left;" />';
+         switch ($data['norm'])
+          {
+              case "pictures/norm/fall_arrest/":
+              case "pictures/norm/glove/":
+              case "pictures/norm/head/":
+              case "pictures/norm/respiratory/":
+              case "pictures/norm/shoes/":
+              case "pictures/norm/tec_clothes/":
+              case "pictures/norm/wk_clothes/":
+ 		echo '<img src="../';
+		echo $data['norm'].$data['name']."_ce";
+		echo '.jpg" style="float:left;" />';
+                break;
+              default:
+                if($data['norm']!='pictures/norm/' && $data['norm']!='pictures/norm' && $data['norm']!='' && $data['norm']!='pictures/norm/gloves/' && $data['norm']!='pictures/norm/clothes/')
+         	 {
+	           echo '<img src="../';
+		   echo $data['norm'];
+		   echo '.jpg" style="float:left;" />';
+	          }
+           }
+	 echo '</td></tr><tr><td width="200px">';
+	 echo $data['description'];
+	 echo '</td></tr></table></td>';
+	 if ($j%2 == 0) 
+	 { 
+	   echo '</tr><tr valign="top">'; 
+	 } 
+	 $j++; 
+	} 
+}
+else
+	echo '<td align="center"><a href="content.php?content=search">未查询到结果，请重试</a></td>';
+echo '</tr></table>';
+	mysql_close();
+?>	

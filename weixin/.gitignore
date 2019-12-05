@@ -1,0 +1,15 @@
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Directories
+PHPMailer_v5.1/*
+js/bootstrap/*
+js/jqueryui/*
+.vscode/*
+upload/*
+unUsed/*
+
+# Wechat project
+delta/*

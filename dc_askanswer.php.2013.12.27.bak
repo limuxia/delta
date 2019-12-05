@@ -1,0 +1,36 @@
+<?php 
+include("config/dbconnect.php"); // connect to database
+$j = 1;
+
+echo '<table style="width:780px;" cellspacing="8"><tr>';
+
+$req = mysql_query('SELECT id_solu,name,pdf FROM askanswer order by id_solu desc');
+while ($data = mysql_fetch_array($req)){ 
+ echo '<td width="150px" align="left"><a href="';
+ //echo '<td width="width:10px" align="left"><a href="';
+ echo '<table cellpadding="30">';
+ echo '<tr><td colspan="1" bgcolor="#D3D3D3"><b><font color="#FFFFFF">';
+ //echo $data['pdf'];
+ /*echo '.pdf" /><img src="';*/
+ /*echo $data['picture'];*/
+ //echo '.jpg"></a><br /><a href="';
+ echo '</a><br /><a href="';
+ echo $data['pdf'];
+ echo '.pdf">';
+ echo $data['name'];
+ echo '</a></td>';
+ if ($j%1 == 0) 
+ { 
+ 	//echo '<td width="width:10px" align="left"><a href="';
+	//echo '<table cellpadding="1px">';
+	//echo '<tr><td colspan="3" bgcolor="#F4661B"><b><font color="#FFFFFF">';
+   	echo '</tr><tr>'; 
+
+ } 
+ $j++; 
+} 
+
+
+echo '</tr></table>';
+mysql_close();
+?>

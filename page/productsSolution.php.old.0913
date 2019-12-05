@@ -1,0 +1,30 @@
+<?php
+include("config/dbconnect.php"); // connect to database
+$j = 1;
+
+echo '<table cellspacing="15"><tr>';
+
+$req = mysql_query('(SELECT id_newprod as id,name,picture,pdf FROM newproducts) union (SELECT id_solu as id,name,picture,pdf FROM solution) order by id desc');
+while ($data = mysql_fetch_array($req)){
+    echo '<td width="250px"><a href="';
+    echo $data['pdf'];
+    echo '.pdf" /><img src="';
+    echo $data['picture'];
+    echo '.jpg"></a><br /><br /><a href="';
+    echo $data['pdf'];
+    echo '.pdf">';
+    echo $data['name'];
+    echo '</a><br /><br /></td>';
+    if ($j%3 == 0)
+    {
+        echo '</tr><tr>';
+    }
+    $j++;
+}
+
+
+echo '</tr></table>';
+$j = 1;
+
+mysql_close();
+?>

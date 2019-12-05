@@ -1,0 +1,320 @@
+/*用以去除边距和自动铺满高度，但实际应用padding和width不用设置*/
+html,body{
+	margin:0;
+	height:100%;
+	font-family:Sans-serif;
+}
+
+/*解决所有浏览器input/textarea宽度100%总是超出一点两个还不一样问题，也不知道算不算是bug不懂为什么但这样就可以好*/
+input,textarea
+{
+	box-sizing:border-box;
+}
+
+#mainBody{
+	min-height:86%;
+	background-color:#f5f5f5;	/*烟白*/
+}
+
+#content{
+	min-height:86%;
+	background-color:#f5f5f5;
+	font-size:1.2em;}
+
+#content2{
+	min-height:86%;
+	font-size:1.2em;}
+	
+.edge3{
+	padding:3%;
+}
+
+
+
+.fontStyle2{
+	font-family:KaiTi;
+}
+
+
+
+.ulStyle1{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+.ulStyle1 li{
+	overflow:hidden;
+}
+
+/*
+a:link,a:visited,a:hover,a:active{
+	text-decoration:none;
+	color:#000000;}
+
+a.a_effect{
+	display:block;
+	width:100%;
+	height:50px;
+	line-height:50px;}
+
+a.a_effect:link,a.a_effect:visited{
+	color:#a9a9a9;}
+
+a.a_effect:hover,a.a_effect:active {
+	background-color:#6495ed;
+	color:#ffffff;}
+	*/
+
+.aStyle1:link,.aStyle1:visited{
+	text-decoration:none;
+	color:black;
+	display: block;
+}
+
+.aStyle1:hover,.aStyle1:active {
+	text-decoration:none;
+	background-color:#6495ed;	/*菊兰*/
+	color:white;
+	display: block;
+}
+
+.aStyle2:link,.aStyle2:visited{
+	text-decoration:none;
+	color:black;	/*DarkGray暗灰*/
+	display: block;
+}
+
+.aStyle2:hover,.aStyle2:active {
+	text-decoration:none;
+	background-color:#6495ed;	/*菊兰*/
+	color:white;
+	display: block;
+}
+
+/*链接按钮样式*/
+.aButton1, .aButton1:link, .aButton1:visited, .aButton1:hover, .aButton1:active{
+	text-decoration:none;
+	display: block;
+	width:170px;
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+	margin:10px auto;
+	color:white;
+	background-color:gray;
+}
+
+
+
+.item{
+	height:50px;
+	line-height:50px;}
+
+.item_title{
+	display:block;
+	float:left;
+	width:70%;
+	margin-left:10%;}
+
+.item_count{
+	display:block;
+	float:right;
+	width:19%;
+	margin-right:1%;
+	font-size:0.6em;}
+
+.itemEffect{
+	padding-left:20%;
+	min-height:50px;
+	line-height: 25px;
+}
+
+.title{
+	padding-left:10%;
+	height:50px;
+	line-height:50px;
+	background-color:#6495ed;	/*菊兰*/
+	color:white;
+}
+
+.itemEffect2{
+	padding-left:20%;
+	height:50px;
+	line-height: 50px;
+}
+
+/*用于显示隐藏列表*/
+.fold{
+	display:none;
+}
+
+.list{
+	display:block;
+}
+
+hr{	/*分隔线特效*/
+	height: 2px;
+	line-height: 2px;
+	margin: 1.4em 0;
+	border: none 0;
+	background: #ddd;
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0.5, rgb(221,221,221)),color-stop(0.5, rgb(255,255,255)));
+	background-image: -webkit-linear-gradient(center top,rgb(221,221,221) 50%,rgb(255,255,255) 50%);
+	background-image: -o-linear-gradient(center top,rgb(221,221,221) 50%,rgb(255,255,255) 50%);
+	background-image: -moz-linear-gradient(center top,rgb(221,221,221) 50%,rgb(255,255,255) 50%);
+	margin:0;
+	*margin:0 0 -14px 0;
+	float:none;
+	*float:left;
+	display:block;}
+
+
+
+
+.autoCenter
+{
+	margin:auto;
+}
+
+.alignCenter
+{
+	text-align:center;
+}
+
+.alignRight
+{
+	text-align:right;
+}
+
+.floatLeft{
+	display:block;
+	float:left;
+}
+
+.floatRight{
+	display:block;
+	float:right;
+}
+
+.clearFloat{
+	clear:both;
+}
+
+.hide
+{
+	display:none;
+}
+
+.show
+{
+	display:block;
+}
+
+.pMargin0{
+	margin:0;
+}
+
+.fontStyle1{
+	font-family:KaiTi;
+	color:gray;
+}
+
+.fontStyle2{
+	color:#a9a9a9;	/*DarkGray暗灰*/
+}
+
+.inputStyle1{
+	width:268px;
+	height:20px;
+	margin:0;
+	padding:0;
+}
+
+.buttonStyle1{
+	width:48px;
+	height:25px;
+	margin:0;
+	padding:0;
+	background-color: yellow;
+}
+
+.buttonStyle2{
+	text-decoration: none;
+	display: block;
+	width:140px;
+	height: 26px;
+	line-height: 22px;
+	padding-top:3px;
+	text-align: center;
+	color: gray;
+	background-color: yellow;
+}
+
+
+
+.tableStyle1
+{
+	width:100%;
+	border-collapse:collapse;
+	margin:10px 0;
+}
+.tableStyle1 th,.tableStyle1 td
+{
+	border:1px solid black;
+}
+
+
+
+
+.width168{
+	width:168px;
+}
+
+
+
+
+.height21{
+	height:21px;
+}
+
+
+
+
+
+#footer{
+	height:60px;
+	line-height:60px;}
+
+#footer span{
+	display:block;
+	width:47%;
+	margin-left:3%;
+	float:left;}
+
+#footer img{
+	height:100%;
+	max-width:50%;
+	float:right;}
+
+
+
+
+#logisticsStyle{
+	width:320px;
+	margin:auto;
+}
+#logisticsStyle table{
+	text-align: center;
+}
+
+#videoStyle{
+	width:320px;
+	margin:auto;
+}
+
+.videoStyle2{
+	width:160px;
+	float:left;
+	margin:10px 0 0 10px;
+}

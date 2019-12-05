@@ -1,0 +1,59 @@
+html,body{
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+	font-family:Sans-serif;}	
+
+#content{
+	min-height:86%;
+	background-color:#f5f5f5;	/*烟白*/
+	font-size:1.2em;}
+		
+.edge3{
+	margin:0;
+	padding:3%;
+}
+
+.videoStyle{
+	margin:0 auto;
+	width:320px;
+	padding-top:10px;
+}
+.videoStyle iframe{
+	width:320px;
+	height:240px;
+}
+
+a:link,a:visited,a:hover,a:active{
+text-decoration:none;
+color:#000000;	/*黑*/}
+	
+a.a_effect{
+	display:block;
+	width:100%;
+	height:50px;
+	line-height:50px;}
+	
+a.a_effect:link,a.a_effect:visited{
+	color:#a9a9a9;	/*DarkGray暗灰*/}
+
+a.a_effect:hover,a.a_effect:active {
+	background-color:#6495ed;	/*菊兰*/
+	color:#ffffff;	/*白*/}
+	
+#footer{
+	height:60px;
+	line-height:60px;}
+
+#footer span{
+	display:block;
+	width:47%;
+	height:100%;
+	margin-left:3%;
+	float:left;}
+
+#footer img{
+	height:100%;
+	max-width:50%;
+	float:right;}

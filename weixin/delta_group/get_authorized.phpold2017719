@@ -1,0 +1,30 @@
+<p class="edge3">
+<?php
+include('../config/dbconnect.php');
+$word=$_POST['word'];
+$sql = 'SELECT 代码,授权类别,公司名称,区域,行业 FROM WEIXIN_authorization WHERE 代码="'.$word.'"';
+$req = mysql_query($sql) or die('Erreur SQL !'.$sql.''.mysql_error());
+if (mysql_num_rows($req)>0)
+{
+	while ($data = mysql_fetch_array($req)){ 
+ 		echo $data['代码'].'<br />';
+ 		echo $data['公司名称'].'<br />';
+ 		if ($data['授权类别']=='经销授权'){
+ 			echo $data['区域'].' 地区<br />';
+ 			echo $data['行业'].' 行业<br />';
+ 			echo '不含网络渠道<br /><br />';
+ 		}
+ 		elseif ($data['授权类别']=='电商授权'){	 			
+ 			echo $data['区域'].' 平台<br />';
+ 			echo $data['行业'].'<br />';
+ 			echo '网络渠道<br /><br />';
+ 		}
+	}	
+	mysql_close();
+}
+else{
+	echo "<script language='JavaScript'>alert('无此授权');location.replace('content.php?content=authorized_search')</script>";
+	exit;
+}
+?>
+</p>

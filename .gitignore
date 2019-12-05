@@ -1,0 +1,20 @@
+# vscode
+/.vscode
+
+# composer vendor dir
+/vendor
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# other
+/docs
+/partner/docs
+/download
+/weixin/PHPMailer_v5.1
+/weixin/upload
+/weixin/exam/upload
+/weixin/exam/keys.txt
+/weixin/js/clipboard.js-master

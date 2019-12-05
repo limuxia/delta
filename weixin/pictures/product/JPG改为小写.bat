@@ -1,0 +1,1 @@
+if exist *.JPG ren *.JPG *.jpg

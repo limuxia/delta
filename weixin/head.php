@@ -1,0 +1,1 @@
+<p style="text-align:right"><a href="index.php?page=manageCenter">返回</a></p>
