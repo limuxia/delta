@@ -4,8 +4,8 @@
 
 include("connectDB.php");
 $sql = "select a.answerName,b.className
-        from Answer as a
-        left join AnswerClass as b on b.classId=a.classId
+        from answer as a
+        left join answerclass as b on b.classId=a.classId
         where a.id={$_REQUEST['answerId']}
 		order by a.id desc";
 if($result = mysql_query($sql))

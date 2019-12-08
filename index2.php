@@ -1,5 +1,10 @@
-<?php
-	//session_start();
+<?php	
+// mysql 升级 mysqli 语法不变封装
+global $connectDBServer;
+require_once('mysql.php');
+
+//session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +33,7 @@
 				include("page/$dir/$page.html");
 			}
 			else{
-				include($dir."/dc_".$page.".php");
+				include("dc_".$page.".php");
 			}
 			?>
 		</div>

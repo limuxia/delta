@@ -24,8 +24,8 @@ function generateMaintainRequest($_maintainRequestId)
 
 //单头数据
     $sql = "select (case maintainRequestType when 1 then '经销商' else '终端客户' end) as maintainRequestType,a.company,a.contact,a.email,a.phone,b.describ,a.buyWay,a.usedClient,a.batchNumber,a.product,a.quantity,a.buyTime,a.usedTime,a.usedCondition,a.requestContent,a.files
-        			from MAINTAINREQUEST as a
-        			left join PRODUCTCLASS as b on b.id=a.productClass
+        			from maintainrequest as a
+        			left join productclass as b on b.id=a.productClass
         			where a.id=$_maintainRequestId";
     $result = mysql_query($sql);
     if (!$result) {

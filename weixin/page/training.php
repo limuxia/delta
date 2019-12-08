@@ -55,7 +55,7 @@ if (isset($_REQUEST['submitTrianing']))
             throw new Exception("MySQL错误7:".mysql_error());
         }
 
-        $sql="insert into TRAINING(trainingWay,address,times,hopeDate,content,demand,company,contact,email,phone,areYou,logTime)
+        $sql="insert into training(trainingWay,address,times,hopeDate,content,demand,company,contact,email,phone,areYou,logTime)
               values('$trainingWay','$address','$times','$hopeDate','$content','$demand','$company','$contact','$email','$phone','$areYou',now())";
 
         $result=mysql_query($sql);

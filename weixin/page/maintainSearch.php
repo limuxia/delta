@@ -52,8 +52,8 @@
 		$_REQUEST['dateTo']==""?$dateTo="9999-12-31":$dateTo=$_REQUEST['dateTo'];	//实际测试mysql中日期上限必须要用真实存在日期不能用诸如9999-99-99
 
         $sql = "select a.id,(case maintainRequestType when 1 then '经销商' else '终端客户' end) as maintainRequestType,a.company,a.contact,a.email,a.phone,b.describ,a.buyWay,a.usedClient,a.batchNumber,a.product,a.quantity,a.buyTime,a.usedTime,a.usedCondition,a.requestContent,a.files
-        			from MAINTAINREQUEST as a
-        			left join PRODUCTCLASS as b on b.id=a.productClass
+        			from maintainrequest as a
+        			left join productclass as b on b.id=a.productClass
         			where a.logTime between '$dateFrom' and '$dateTo'
                     order by a.id desc";
 			$result=mysql_query($sql);

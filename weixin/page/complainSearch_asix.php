@@ -54,7 +54,7 @@
 		$_REQUEST['dateTo']==""?$dateTo="9999-12-31":$dateTo=$_REQUEST['dateTo'];	//实际测试mysql中日期上限必须要用真实存在日期不能用诸如9999-99-99
 
 			$sql="select *
-        			from complain
+        			from complain_asix
         			where writeTime between '$dateFrom' and '$dateTo'
         			order by id desc";
 			$result=mysql_query($sql);

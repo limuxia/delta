@@ -29,9 +29,9 @@ function verifier(input)
 		$word = $_POST["word"];
 		echo "<hr /><p>";
 		include('../config/dbconnect.php');
-		$sql = "SELECT a.logisticsCode,c.apiCode,a.logisticsCompany,b.time1,b.time2,b.time3,b.time4,b.time5 FROM WEIXIN_salesOrder as a
-				left join WEIXIN_logistics as b on b.code=a.logisticsCode
-				left join WEIXIN_logisticsCompany as c on c.innerCode=a.logisticsCompany
+		$sql = "SELECT a.logisticsCode,c.apiCode,a.logisticsCompany,b.time1,b.time2,b.time3,b.time4,b.time5 FROM weixin_salesorder as a
+				left join weixin_logistics as b on b.code=a.logisticsCode
+				left join weixin_logisticscompany as c on c.innerCode=a.logisticsCompany
 				WHERE a.orderNo='$word'";
 		$req = mysql_query($sql) or die('Erreur SQL !' . $sql . '' . mysql_error());
 		if (mysql_num_rows($req) > 0)

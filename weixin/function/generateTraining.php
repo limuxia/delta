@@ -25,7 +25,7 @@ function generateTraining($trainingId)
                 </style>";
 
     //单头数据
-    $sql = "select * from TRAINING where id='$trainingId'";
+    $sql = "select * from training where id='$trainingId'";
     $result = mysql_query($sql);
     if (!$result) {
         return("生成内容失败，您可登入管理后台查看该数据，错误信息：\n\t" . mysql_error());

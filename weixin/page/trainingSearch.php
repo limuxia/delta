@@ -57,11 +57,11 @@
 		$_REQUEST['areYou']==""?$areYou=" ":$areYou=" and areYou='{$_REQUEST['areYou']}' ";
 
 			$sql="select *
-        			from TRAINING
+        			from training
         			where hopeDate between '$dateFrom' and '$dateTo'
         			$trainingWay
         			$areYou
-        			order by hopeDate";
+        			order by hopeDate desc";
 			$result=mysql_query($sql);
 			if (!$result)
 			{

@@ -21,7 +21,7 @@ if(!isset($_SESSION['login_weixin']))
     {
         // 只有用户 delta 和 test 可以访问
         $username = strtolower($_REQUEST['username']);
-        if( ($username == 'delta' && $_REQUEST['password'] == 'delta88303mail!') || ($username == 'test' && $_REQUEST['password'] == 'test') )
+        if($username == 'delta' && $_REQUEST['password'] == 'delta88303mail!')
         {
             $_SESSION['login_weixin'] = $username;
         }
@@ -36,6 +36,7 @@ if(!isset($_SESSION['login_weixin']))
 ?>
 <div class="edge3 alignCenter">
     <p><a href="index.php?page=complainSearch">投诉查询</a></p>
+    <p><a href="index_asix.php?page=complainSearch_asix">投诉查询（东南亚）</a></p>
     <p><a href="index.php?page=trainingSearch">培训申请查询</a></p>
     <p><a href="index.php?page=maintainSearch">产品维护和年检申请查询</a></p>
 </div>

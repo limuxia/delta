@@ -76,7 +76,7 @@ if (isset($_REQUEST['submitComplain']))
             throw new Exception("MySQL错误7:".mysql_error());
         }
 
-        $sql="insert into COMPLAIN(buyWay,platform,seller,clientName,contact,phone,email,product,quantify,batchNumber,usedTimes,description,complain,files,writeTime)
+        $sql="insert into complain(buyWay,platform,seller,clientName,contact,phone,email,product,quantify,batchNumber,usedTimes,description,complain,files,writeTime)
               values('$buyWay','$platform','$seller','$clientName','$contact','$phone','$email','$product',$quantify,'$batchNumber',$usedTimes,'$description','$complain','$fileName',now())";
         $result=mysql_query($sql);
         if(!$result)

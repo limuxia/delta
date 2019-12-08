@@ -67,7 +67,7 @@ if (isset($_REQUEST['submit']))
         $usedCondition=$_REQUEST['usedCondition'];
         $requestContent=$_REQUEST['requestContent'];
 
-        $sql="insert into MAINTAINREQUEST(maintainRequestType,company,contact,email,phone,productClass,buyWay,usedClient,batchNumber,product,quantity,buyTime,usedTime,usedCondition,requestContent,files,logTime)
+        $sql="insert into maintainrequest(maintainRequestType,company,contact,email,phone,productClass,buyWay,usedClient,batchNumber,product,quantity,buyTime,usedTime,usedCondition,requestContent,files,logTime)
               values($maintainRequestType,'$company','$contact','$email','$phone',$productClass,'$buyWay','$usedClient','$batchNumber','$product',$quantity,'$buyTime','$usedTime','$usedCondition','$requestContent','$fileName',now())";
 
         if(!mysql_query("set autocommit=0"))

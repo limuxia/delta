@@ -4,7 +4,7 @@
 <?php
 
 include("connectDB.php");
-$sql = "select * from AnswerClass";
+$sql = "select * from answerclass";
 $result = mysql_query($sql);
 while($row=mysql_fetch_array($result))
 {
@@ -13,7 +13,7 @@ while($row=mysql_fetch_array($result))
 	echo $row[1];
 	echo "</span></div><hr />";
 
-	$sql="select id,answerName from Answer where classId='$row[0]'";
+	$sql="select id,answerName from answer where classId='$row[0]'";
 	$result2=mysql_query($sql);
 	echo "<div class='fold'>";
 	while($row2 = mysql_fetch_array($result2))

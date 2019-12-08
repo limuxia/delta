@@ -20,8 +20,9 @@ echo "<div>
 			<ul class='ulStyle1'>";
 while($row=mysql_fetch_array($result))
 {
-	//注意url参数不支持+号&号，所以务必留心保证数据不要带这些符号以免出错，注：也不能使用urlencode()对参数编码因为会使非符号字符如中文出错
+	//切忌：url 传参不支持+号（表示空格）&号？号%号为 url 特定解析含义符，所以尤其服务端输出务必留心保证浏览器传参值不要带这些符号使用 encodeURI() 对参数值编码也不行
 	//另须注意：$_GET、$_REQUEST更不需要urldecode()解码，因为php这两个函数本身已解码
+	//echo "<li><a class='aStyle2' href='page/standard.php?standard=$row[0]'><p class='itemEffect pMargin0'>$row[0]</p></a></li><hr />";	// 避免 header() 前有输出而不正常所以直接访问该页
 	echo "<li><a class='aStyle2' href='index.php?page=standard&standard=$row[0]'><p class='itemEffect pMargin0'>$row[0]</p></a></li><hr />";
 }
 echo "</ul></div>";
@@ -33,8 +34,9 @@ echo "<div>
 			<ul class='ulStyle1'>";
 while($row=mysql_fetch_array($result))
 {
-	//注意url参数不支持+号&号，所以务必留心保证数据不要带这些符号以免出错，注：也不能使用urlencode()对参数编码因为会使非符号字符如中文出错
+	//切忌：url 传参不支持+号（表示空格）&号？号%号为 url 特定解析含义符，所以尤其服务端输出务必留心保证浏览器传参值不要带这些符号使用 encodeURI() 对参数值编码也不行
 	//另须注意：$_GET、$_REQUEST更不需要urldecode()解码，因为php这两个函数本身已解码
+	//echo "<li><a class='aStyle2' href='page/standard.php?standard=$row[0]'><p class='itemEffect pMargin0'>$row[0]</p></a></li><hr />";	// 避免 header() 前有输出而不正常所以直接访问该页
 	echo "<li><a class='aStyle2' href='index.php?page=standard&standard=$row[0]'><p class='itemEffect pMargin0'>$row[0]</p></a></li><hr />";
 }
 echo "</ul></div>";
