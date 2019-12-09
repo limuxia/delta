@@ -16,7 +16,12 @@
 </head>
 <body>
 
-<?php
+<?php	
+
+// mysql 升级 mysqli 语法不变封装
+global $connectDBServer;
+require_once('mysql.php');
+
 	include("config/dbconnect.php");
 	$j = 1; 	
 	
