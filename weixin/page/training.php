@@ -96,7 +96,12 @@ if (isset($_REQUEST['submitTrianing']))
     $mail=new PHPMailer();
     $mail->IsSMTP();
     $mail->Host="smtp.qiye.163.com";
-    $mail->Port="25";
+    
+    //$mail->Port="25";
+    // 不知为何阿里云 centos + oninstack 只能用 ssl 加密方式发送邮件
+    $mail->SMTPSecure = "ssl";
+    $mail->Port = "994";
+
     $mail->SMTPAuth=true;
     $mail->Username="admin@deltaplus.com.cn";
     $mail->Password="2015deltaplus@";
@@ -110,6 +115,7 @@ if (isset($_REQUEST['submitTrianing']))
     $mail->MsgHTML($body);
     if(!$mail->Send())
     {
+        //exit($mail->ErrorInfo);
         exit("<script>alert(\"发送邮件失败，但您的培训申请已提交，请您电话联系我司确认！\");
                         location.href='index.php?page=training';</script>");
     }

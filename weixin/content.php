@@ -4,6 +4,11 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css.css?v=1.0.1" />
 <?php
+
+// mysql 升级 mysqli 语法不变封装
+global $connectDBServer;
+require_once('../mysql.php');
+
 $content="";
 $title="";
 if (isset($_REQUEST['content']))
