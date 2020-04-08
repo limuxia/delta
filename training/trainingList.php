@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * 测试用户 TEST/test 注意为安全 update effective_date
+ */
+
 // 要求：用户名密码播放地址有效期不能下载
 
 session_start();
@@ -15,7 +19,7 @@ if(!isset($_SESSION['login'])){
 try{
     // 注意：数据库在当前目录 -- 不存在时 sqlite 将自动创建
     $db = new SQLite3('training.db');
-    $sql = 'select * from training_list where status=0';
+    $sql = 'select * from training_list where status=1';
     $ret = $db->query($sql);
     if(!$ret){
         throw new Exception($db->lastErrorMsg());
