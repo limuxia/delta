@@ -15,11 +15,12 @@ if(!isset($_SESSION['login'])){
 try{
     // 注意：数据库在当前目录 -- 不存在时 sqlite 将自动创建
     $db = new SQLite3('training.db');
-    $sql = 'select * from training_list';
+    $sql = 'select * from training_list where status=0';
     $ret = $db->query($sql);
     if(!$ret){
         throw new Exception($db->lastErrorMsg());
     }
+    $traingList = [];   // 避免无查询结果时不赋值报错
     while($row = $ret->fetchArray()){
         $traingList[] = $row;
     }
