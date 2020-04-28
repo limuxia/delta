@@ -120,20 +120,11 @@ if (isset($_REQUEST['submitComplain']))
     }
 
     //数据处理成功后调用PHPMailer发邮件
-    require_once "PHPMailer_v5.1/class.phpmailer.php";
-    $mail=new PHPMailer();
-    $mail->IsSMTP();
-    $mail->Host="smtp.qiye.163.com";
-    
-    //$mail->Port="25";
-    // 不知为何阿里云 centos + oninstack 只能用 ssl 加密方式发送邮件
-    $mail->SMTPSecure = "ssl";
-    $mail->Port = "994";
+    require_once('PHPMailer_v5.1/class.phpmailer.php');
+    require_once('function/mailSetup.php');
+    $mail = new PHPMailer();
+    mail_setup($mail);
 
-    $mail->SMTPAuth=true;
-    $mail->Username="admin@deltaplus.com.cn";
-    $mail->Password="2015deltaplus@";
-    $mail->SetFrom("admin@deltaplus.com.cn","Admin");
     $mail->AddAddress("ssc@deltaplus.com.cn","");
     //$mail->AddCC("xuyi@deltaplus.com.cn","");
     $mail->CharSet="UTF-8";
