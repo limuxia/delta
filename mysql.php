@@ -27,6 +27,11 @@ function mysql_close()
     return mysqli_close(getLink());
 }
 
+function mysql_insert_id()
+{
+    return mysqli_insert_id(getLink());
+}
+
 function mysql_connect($db_server,$db_user,$db_password)
 {
     return mysqli_connect($db_server,$db_user,$db_password);

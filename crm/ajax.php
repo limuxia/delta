@@ -17,20 +17,33 @@ require_once('../config/dbconnect.php');
 
 // 更新客户 -- 未完成
 if(isset($_REQUEST['ajax']) && $_REQUEST['ajax'] == 'customer_update'){
-    $id = $_REQUEST['id'];
-    $code = isset($_REQUEST['code']) ? $_REQUEST['code'] : '';
-    $description = $_REQUEST['description'];
-    $nature = $_REQUEST['nature'];
-    $trade_id = empty($_REQUEST['trade_id']) ? 'null' : $_REQUEST['trade_id'];  // 赋值到 sql 用字符串 null
-    $business = $_REQUEST['business'];
+    try{
+        // 避免空执行
+        if(empty($_REQUEST['id'])){
+            throw new Exception('Error: 无效数据！');
+        }
 
-    $address = $_REQUEST['address'];    //仅发票录入使用
-    $phone = $_REQUEST['phone'];    //仅发票录入使用
+        $id = $_REQUEST['id'];
+        $field = $_REQUEST['field'];
+        $value = $_REQUEST['value'];
 
-    require_once('function/updatecustomer.php');
-    $result = updatecustomer(-2, $id, $code, $description, $nature, $trade_id, $business, $address, $phone);
-    if($result != $id){ //如果执行失败返回错误信息
-        echo $result;
+        // 非字符串字段不必加引号直接赋值
+        $assign = ($field == 'customer_nature_id') ? "$field=$value" : "$field=\"$value\"";
+        
+        $sql = "update customer
+                set $assign
+                where id=$id";
+        $result = mysql_query($sql);
+        if(!$result){
+          throw new Exception(mysql_error());
+        }
+
+        exit;
+    }
+    catch(Exception $e){
+        //exit($e->getMessage());
+
+        exit('');
     }
 }
 
@@ -45,14 +58,18 @@ if (isset($_REQUEST['ajax']) && $_REQUEST['ajax']=='customer_get')
     
         $sql = "select * from customer where id={$_REQUEST['id']}";
         $result = mysql_query($sql);
+        if(!$result){
+          throw new Exception(mysql_error());
+        }
+
         $row = mysql_fetch_assoc($result);
         $jsonStr=json_encode($row);
         exit($jsonStr);
     }
     catch(Exception $e){
-        exit($e->getMessage());
+        //exit($e->getMessage());
 
-        //exit('');
+        exit('');
     }
 }
 
@@ -69,6 +86,9 @@ if (isset($_REQUEST['ajax']) && $_REQUEST['ajax']=='customer_list')
                 where name like \"{$_REQUEST['keyword']}%\"
                 order by name";
         $result = mysql_query($sql);
+        if(!$result){
+          throw new Exception(mysql_error());
+        }
         
         // 注意：指定数据行类型
         $arr = mysqli_fetch_all($result, MYSQLI_ASSOC);

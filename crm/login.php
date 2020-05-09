@@ -10,7 +10,8 @@ if(isset($_REQUEST['login'])){
         if(strtoupper($user_id) == 'CRM' && $_REQUEST['user_password'] == '1E&n8%'){
             session_start();
             $_SESSION['login'] = [
-                'user_id' => $user_id
+                'user_id' => $user_id,
+                'user_name' => '代尔塔用户'
             ];
             
             // 返回登录前页面，如果不存在转到录入页面
@@ -25,9 +26,9 @@ if(isset($_REQUEST['login'])){
     }
     catch(Exception $e){
         exit('<script>
-        alert("' . $e->getMessage() . '");
-        history.back();
-    </script>');
+                alert("' . $e->getMessage() . '");
+                history.back();
+            </script>');
     }
 }
 ?>
@@ -59,30 +60,33 @@ if(isset($_REQUEST['login'])){
   </head>
   <body>    
     <div class="container-fluid">
-        <div class ="row text-center"><h4>请登录</h4></div>
 
         <div class="row"><!-- 使用 col-* 前必须有 row -->
-            <div class="col-lg-offset-4 col-lg-4"><div class="row"><form class="form-horizontal">
+            <div class="col-lg-offset-4 col-lg-4">
+                <h4 class ="text-center">请登录</h4>
 
-            <div class="form-group">
-                <label class="col-lg-3 control-label" for='user_id'>用户名</label>
-                <div class="col-lg-9"><input class="form-control" id='user_id' name='user_id' type="text" value="<?= $user_id ?>" required></div>
-            </div>
-            
-            <div class="form-group">
-                <label class="col-lg-3 control-label" for='user_password'>密码</label>
-                <div class="col-lg-9"><input class="form-control" id='user_password' name='user_password' type='password' required></div>
-            </div>
-                
-            
-            <div class="form-group">
-                <div class="col-lg-offset-3 col-lg-9"><button class="button" type="submit" name="login">登录</button></div>
-            </div>
+                <form class="form-horizontal">
 
-            </form></div></div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for='user_id'>用户名</label>
+                        <div class="col-lg-9"><input class="form-control" id='user_id' name='user_id' type="text" value="<?= $user_id ?>" required></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for='user_password'>密码</label>
+                        <div class="col-lg-9"><input class="form-control" id='user_password' name='user_password' type='password' required></div>
+                    </div>
+                        
+                    
+                    <div class="form-group">
+                        <div class="col-lg-offset-3 col-lg-9"><button class="button" type="submit" name="login">登录</button></div>
+                    </div>
+
+                </form>
+
+            </div>
         </div>
 
-    </div>
-  
+    </div>  
 </body>
 </html>

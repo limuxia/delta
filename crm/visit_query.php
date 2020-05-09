@@ -6,7 +6,7 @@ session_start();
 require_once('login_check.php');
 
 // 查询处理
-if(isset($_REQUEST['save'])){
+if(isset($_REQUEST['query'])){
     // mysql 升级 mysqli 语法不变封装
     global $connectDBServer;
     require_once('../mysql.php');
@@ -14,26 +14,31 @@ if(isset($_REQUEST['save'])){
     // 加载数据库配置
     require_once('../config/dbconnect.php');
 
-    try{
-        // 注意：数据库在当前目录 -- 不存在时 sqlite 将自动创建
-        $db = new SQLite3('training.db');
-        $sql = 'select * from training_list where status=1';
-        $ret = $db->query($sql);
-        if(!$ret){
-            throw new Exception($db->lastErrorMsg());
+    try{        
+        // 避免空执行
+        if(empty($_REQUEST['customer_visit']['customer_id'])){
+            throw new Exception('Error: 无效数据！');
         }
-        $traingList = [];   // 避免无查询结果时不赋值报错
-        while($row = $ret->fetchArray()){
-            $traingList[] = $row;
+
+        $filter_visit_date = empty($_REQUEST['customer_visit']['visit_date']) ? '' : "and visit_date=\"{$_REQUEST['customer']['visit_date']}\"";
+        $sql = "select *
+                from customer_visit
+                where customer_id={$_REQUEST['customer_visit']['customer_id']}
+                $filter_visit_date
+                order by visit_date";
+        $result = mysql_query($sql);
+        if(!$result){
+          throw new Exception(mysql_error());
         }
+        
+        // 注意：指定数据行类型
+        $visitList = mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
     catch(Exception $e){
-        $db->close();
-
         exit('<script>
-        alert("' . $e->getMessage() . '");
-        history.back();
-    </script>');
+                alert("' . $e->getMessage() . '");
+                history.back();
+            </script>');
     }
 }
 ?>
@@ -45,7 +50,6 @@ if(isset($_REQUEST['save'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>E-LEARNING线上培训课程</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -57,30 +61,77 @@ if(isset($_REQUEST['save'])){
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
     
-  </head>
-  <body>
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-        
+
+    <script src="js/ajax_customer.js"></script>
+
+    <title>拜访日志查询</title>
+  </head>
+  <body>        
     <div class="container-fluid">
-        <div class ="row">
-            <h4 class="col-lg-offset-2">欢迎您！<?= $_SESSION['login']['user_id'] . ' ' . $_SESSION['login']['user_description'] ?></h4>
-            <div class="col-lg-offset-10"><a class="navbar-link" href="logout.php">退出</a></div>
+      
+        <?php require_once('layout_header.php') ?>
+        
+        <div class="row"><!-- 使用 col-* 前必须有 row -->
+            <div class="col-lg-offset-3 col-lg-6">
+            <a class="pull-right navbar-link" href="visit_input.php">拜访日志/录入</a>
+            </div>
         </div>
 
-        <div class ="row text-center">
-            <div class="col-lg-offset-5 col-lg-2 list-group">
-            
-            <?php foreach($traingList as $training): ?>
-                <a class="list-group-item" href="training.php?video_id=<?= $training['video_id'] ?>"><?= $training['description'] ?></a>
-            <?php endforeach ?>
-            
-            </div>            
+        <div class="row"><!-- 使用 col-* 前必须有 row -->
+            <div class="col-lg-offset-3 col-lg-6">
+                <h1 class="text-center">拜访日志查询</h1>
+
+                <form class="form-inline">
+                    <div style="width: 50%" class="form-group">
+                        <label for="customer_name">客户名称</label>
+                        <input type="hidden" id="customer-id" name="customer_visit[customer_id]" required>
+                        <input style="width: 70%" type="text" class="form-control" id="customer-name" name="customer[name]" required placeholder="可录入客户名称关键字后选择）" autocomplete="off" onkeyup="filter_customer(this.value, this.parentNode)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="visit_date">拜访日期</label>
+                        <input type="date" class="form-control" id="customer_visit-visit_date" name="customer_visit[visit_date]">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-default pull-right" name="query">查询</button>
+                </form>
+
+            </div>
         </div>
+        
+<?php if(isset($visitList)): ?>
+        <div class ="row">            
+            <h1 class="text-center">查询结果</h1>
+
+            <table style="width: 90%; margin: auto" class="table-bordered">
+                <tr>
+                    <th>客户名称</th>
+                    <th><?= $_REQUEST['customer']['name'] ?></th>
+                </tr>
+        
+        <?php if(empty($visitList)): ?>
+                <tr><td colspan="2" class="text-center">无</td></tr>
+        <?php else: ?>
+                <tr>
+                    <th>拜访日期</th>
+                    <th>拜访内容</th>
+                </tr>
+            <?php foreach($visitList as $visit): ?>
+                <tr>
+                    <td><?= $visit['visit_date'] ?></td>
+                    <td><?= $visit['visit_content'] ?></td>
+                </tr>    
+            <?php endforeach ?>
+        <?php endif ?>
+
+            </table>
+        </div>
+<?php endif ?>
 
     </div>
-
   </body>
 </html>

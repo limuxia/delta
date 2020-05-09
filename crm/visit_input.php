@@ -28,7 +28,7 @@ if(isset($_REQUEST['save'])){
         throw new Exception(mysql_error());
       }
 
-      $customer_visit['customer_id'] = mysqli_insert_id(getLink());
+      $customer_visit['customer_id'] = mysql_insert_id();
     }
 
     // 写入拜访日志
@@ -47,9 +47,10 @@ if(isset($_REQUEST['save'])){
     </script>"); 
   }
   catch(Exception $e){
-      exit($e->getMessage());
-
-      //exit('Error: 遇到错误，您可返回重试。');
+    exit('<script>
+        alert("' . $e->getMessage() . '");
+        history.back();
+      </script>');
   }
 
 }
@@ -85,10 +86,18 @@ if(isset($_REQUEST['save'])){
   </head>
   <body>
     <div class="container-fluid">
-      <div class ="row text-center"><h1>录入拜访日志</h1></div>
+      
+      <?php require_once('layout_header.php') ?>
+      
+      <div class="row"><!-- 使用 col-* 前必须有 row -->
+        <div class="col-lg-offset-3 col-lg-6">
+          <a class="pull-right navbar-link" href="visit_query.php">拜访日志/查询</a>
+        </div>
+      </div>
 
       <div class="row"><!-- 使用 col-* 前必须有 row -->
         <div class="col-lg-offset-3 col-lg-6">
+          <h1 class="text-center">录入拜访日志</h1>
 
           <form>
             <div class="form-group">
@@ -122,7 +131,6 @@ if(isset($_REQUEST['save'])){
           </form>
 
         </div>
-
       </div>
 
     </div>
