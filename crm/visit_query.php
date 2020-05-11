@@ -21,7 +21,7 @@ if(isset($_REQUEST['query'])){
         }
 
         $filter_visit_date = empty($_REQUEST['customer_visit']['visit_date']) ? '' : "and visit_date=\"{$_REQUEST['customer']['visit_date']}\"";
-        $sql = "select *
+        $sql = "select visit_date, visit_content
                 from customer_visit
                 where customer_id={$_REQUEST['customer_visit']['customer_id']}
                 $filter_visit_date
@@ -33,6 +33,15 @@ if(isset($_REQUEST['query'])){
         
         // 注意：指定数据行类型
         $visitList = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        // 导出 csv
+        if(isset($_REQUEST['export'])){
+            require_once('../export_csv.php');
+            $table_header = ['拜访日期', '拜访内容'];
+            // 数据导出到浏览器端另存为 csv 文件
+            export_csv($visitList, $table_header, 'customer_visit_'.$_REQUEST['customer']['name'].'.csv');
+            exit;
+        }
     }
     catch(Exception $e){
         exit('<script>
@@ -105,7 +114,12 @@ if(isset($_REQUEST['query'])){
         
 <?php if(isset($visitList)): ?>
         <div class ="row">            
-            <h1 class="text-center">查询结果</h1>
+            <div>
+                <h1 class="text-center">查询结果</h1>
+                <?php if(!empty($visitList)): ?>
+                    <a class="pull-right navbar-link"  onclick="location.href=location.href+'&export=csv'">导出</a>
+                <?php endif ?>
+            </div>
 
             <table style="width: 90%; margin: auto" class="table-bordered">
                 <tr>
