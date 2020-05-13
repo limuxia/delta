@@ -21,7 +21,7 @@ if(!isset($_SESSION['login_weixin']))
     {
         // 只有用户 delta 和 test 可以访问
         $username = strtolower($_REQUEST['username']);
-        if($username == 'delta' && $_REQUEST['password'] == 'delta88303mail!')
+        if($username == 'manage' && $_REQUEST['password'] == ')3dL6rM@')
         {
             $_SESSION['login_weixin'] = $username;
         }
