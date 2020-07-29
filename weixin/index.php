@@ -65,6 +65,9 @@ switch ($page){
 	case "franchiser":
 		$title="信息反馈";
 		break;
+	case "franchiser_product_trial":
+		$title="产品试用反馈";
+		break;
 	case "vip":
 		$title="VIP用户";
 		break;
