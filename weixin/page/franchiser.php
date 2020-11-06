@@ -1,6 +1,6 @@
 <div style="height: 50px"></div>
 
-<div style="width: 290px; margin: 30px auto 0 auto"><a href="https://ding.fanqier.cn/f/9pieg0wu">
+<div style="width: 290px; margin: 30px auto 0 auto"><a href="https://jinshuju.net/f/VhLNkl">
 	<img style="width: 100%" src="pictures/franchiser/menu-training-franchiser.png" />
 </a></div>
 
@@ -16,7 +16,7 @@
 	<img style="width: 100%" src="pictures/franchiser/menu-product-trial.png" />
 </a></div>
 
-<div style="width: 290px; margin: 30px auto 0 auto"><a href="https://ding.fanqier.cn/f/nibu9v25">
+<div style="width: 290px; margin: 30px auto 0 auto"><a href="https://jinshuju.net/f/oMC7lz">
 	<img style="width: 100%" src="pictures/franchiser/menu-quality-complain.png" />
 </a></div>
 
